@@ -1,0 +1,25 @@
+{
+  "name": "payments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dasaco/payments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dasaco/payments/issues"
+  },
+  "homepage": "https://github.com/dasaco/payments#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-register": "^6.26.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1"
+  }
+}
