@@ -1,4 +1,4 @@
-# Square Checker
+# Payments processor
 
 Program processes commissions from given JSON
 
