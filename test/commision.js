@@ -48,8 +48,8 @@ describe('DataProcesser', () => {
 
   it('should be able to handle EUR operation processing', (done) => {
     const operationsJSON = JSON.parse(operationsJSONEUR);
-    dp.processOperationsJSON(operationsJSON, (commisions) => {
-      expect(commisions).to.deep.equal([
+    dp.processOperationsJSON(operationsJSON, (comissions) => {
+      expect(comissions).to.deep.equal([
         '0.06', '0.90', '87.00', '3.00', '0.30', '0.30', '5.00', '0.00', '0.00',
       ]);
       done();
@@ -58,8 +58,8 @@ describe('DataProcesser', () => {
 
   it('should be able to handle different currency operation processing', (done) => {
     const operationsJSON = JSON.parse(operationsJSONCurrencies);
-    dp.processOperationsJSON(operationsJSON, (commisions) => {
-      expect(commisions).to.deep.equal([
+    dp.processOperationsJSON(operationsJSON, (comissions) => {
+      expect(comissions).to.deep.equal([
         '0.06', '0.90', '0.00', '0.70', '0.30', '0.30', '5.00', '0.00', '0.00',
       ]);
       done();

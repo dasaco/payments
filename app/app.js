@@ -8,8 +8,8 @@ const operationsJSON = JSON.parse(content);
 
 const dp = new DataProcesser();
 
-dp.processOperationsJSON(operationsJSON, (commisions) => {
-  commisions.forEach((commision) => {
-    console.log(commision);
+dp.processOperationsJSON(operationsJSON, (comissions) => {
+  comissions.forEach((comission) => {
+    console.log(comission);
   });
 });

@@ -15,13 +15,13 @@ class DataProcesser {
       cashOutJuridical: null,
     };
     this.fx = fx;
-    this.commisions = [];
+    this.comissions = [];
 
     this.fetchConfig();
   }
 
-  getCommisions() {
-    return this.commisions;
+  getcomissions() {
+    return this.comissions;
   }
 
   processOperationsJSON(operationsJSON, callback) {
@@ -32,10 +32,10 @@ class DataProcesser {
         const op = new Operation(date, user_id, user_type, type, operation);
         operations.push(op);
       });
-      const commisions = this.processUserOperations(operations);
-      this.commisions = commisions;
+      const comissions = this.processUserOperations(operations);
+      this.comissions = comissions;
       if (callback && typeof (callback) === 'function') {
-        callback(commisions);
+        callback(comissions);
       }
     } else {
       setTimeout(() => this.processOperationsJSON(operationsJSON, callback), 250);
@@ -44,15 +44,15 @@ class DataProcesser {
 
   processUserOperations(operations) {
     let opCount = 0;
-    const commisions = [];
+    const comissions = [];
     operations.forEach((op) => {
       if (op.type === 'cash_in') {
-        const commision = op.operation.amount * this.config.cashIn.percents * 0.01;
-        if (this.fx(commision).from(op.operation.currency)
+        const comission = op.operation.amount * this.config.cashIn.percents * 0.01;
+        if (this.fx(comission).from(op.operation.currency)
           .to(this.config.cashIn.max.currency) > this.config.cashIn.max.amount) {
-          commisions.push(this.config.cashIn.max.amount.toFixed(2));
+          comissions.push(this.config.cashIn.max.amount.toFixed(2));
         } else {
-          commisions.push(commision.toFixed(2));
+          comissions.push(comission.toFixed(2));
         }
       } else if (op.type === 'cash_out') {
         if (op.user_type === 'natural') {
@@ -76,7 +76,7 @@ class DataProcesser {
           const weekLimit = this.fx(this.config.cashOutNatural.week_limit.amount)
             .from(this.config.cashOutNatural.week_limit.currency)
             .to(op.operation.currency);
-          let commision = 0;
+          let comission = 0;
           if (totalThatWeek + op.operation.amount > weekLimit) {
             let payableSum = op.operation.amount - weekLimit;
             if (totalThatWeek >= weekLimit) {
@@ -84,26 +84,26 @@ class DataProcesser {
             } else if (payableSum <= 0) {
               payableSum = (totalThatWeek + op.operation.amount) - weekLimit;
             }
-            commision = payableSum * this.config.cashOutNatural.percents * 0.01;
-            commisions.push(helpers.roundUp(commision, 10).toFixed(2));
+            comission = payableSum * this.config.cashOutNatural.percents * 0.01;
+            comissions.push(helpers.roundUp(comission, 10).toFixed(2));
           } else {
-            commisions.push(commision.toFixed(2));
+            comissions.push(comission.toFixed(2));
           }
         } else if (op.user_type === 'juridical') {
-          const commision = op.operation.amount * this.config.cashOutJuridical.percents * 0.01;
-          if (this.fx(commision).from(op.operation.currency)
+          const comission = op.operation.amount * this.config.cashOutJuridical.percents * 0.01;
+          if (this.fx(comission).from(op.operation.currency)
             .to(this.config.cashOutJuridical.min.currency)
               < this.config.cashOutJuridical.min.amount) {
-            commisions.push(this.config.cashOutJuridical.min.amount);
+            comissions.push(this.config.cashOutJuridical.min.amount);
           } else {
-            commisions.push(commision.toFixed(2));
+            comissions.push(comission.toFixed(2));
           }
         }
       }
       opCount += 1;
     });
 
-    return commisions;
+    return comissions;
   }
 
   fetchConfig() {
