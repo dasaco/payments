@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/dasaco/payments.git"
   },
-  "author": "",
+  "author": "Daniel Grek Sanchez Castellanos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dasaco/payments/issues"
@@ -23,8 +23,7 @@
     "lodash": "^4.17.4",
     "mocha": "^3.5.3",
     "moment": "^2.18.1",
-    "money": "^0.2.0",
-    "sinon": "^3.3.0"
+    "money": "^0.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.0",
