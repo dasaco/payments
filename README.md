@@ -1,4 +1,4 @@
-# Payments processor
+# Payments Processor
 
 Program processes commissions from given JSON
 
